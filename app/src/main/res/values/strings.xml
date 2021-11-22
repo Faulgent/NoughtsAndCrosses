@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NoughtsAndCrosses</string>
+    <string name="ChooseFieldSize">Choose field size</string>
+    <string name="small_scale">3X3</string>
+    <string name="medium_scale">4X4</string>
+    <string name="large_scale">5X5</string>
+</resources>
