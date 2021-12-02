@@ -7,9 +7,9 @@ import android.widget.Button
 
 class StartingScreen : AppCompatActivity() {
 
-    val small: Button by lazy{findViewById(R.id.small)}
-    val medium: Button by lazy {findViewById(R.id.medium)}
-    val large: Button by lazy {findViewById(R.id.large)}
+    private val small: Button by lazy{findViewById(R.id.small)}
+    private val medium: Button by lazy {findViewById(R.id.medium)}
+    private val large: Button by lazy {findViewById(R.id.large)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +29,9 @@ class StartingScreen : AppCompatActivity() {
 
     }
 
-    fun startNewGame(scale: Scale) {
+    private fun startNewGame(scale: Scale) {
         intent = Intent(this, GameActivity::class.java)
+        intent.putExtra("scale", scale)
         startActivity(intent)
     }
 }
