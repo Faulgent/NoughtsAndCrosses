@@ -36,7 +36,7 @@ class GameActivity : AppCompatActivity() {
     fun displayNoWinWindow(viewModel: GameViewModel) {
         if (viewModel.impWin.value == true) {
             val alertDialog = AlertDialog.Builder(this)
-            alertDialog.setTitle("Ups!")
+            alertDialog.setTitle("Oops!")
                 .setMessage("The field is filled and nobody can win!")
                 .setPositiveButton("Start new game") { _: DialogInterface, i: Int -> finish() }
                 .show()
