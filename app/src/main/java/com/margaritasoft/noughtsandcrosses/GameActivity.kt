@@ -7,11 +7,9 @@ import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.marginLeft
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 
-class GameActivity: AppCompatActivity() {
+class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
@@ -19,15 +17,27 @@ class GameActivity: AppCompatActivity() {
         val scale = intent.getSerializableExtra("scale")
         val viewModel = GameViewModel()
         viewModel.startNewGame(scale as Scale)
-        viewModel.field.observe(this, Observer {drawLayout(it, viewModel::pressed) })
-        viewModel.win.observe(this, Observer {displayWinWindow(viewModel)})
+        viewModel.field.observe(this, Observer { drawLayout(it, viewModel::pressed) })
+        viewModel.win.observe(this, Observer { displayWinWindow(viewModel) })
+        viewModel.impWin.observe(this, { displayNoWinWindow(viewModel) })
 
     }
+
     fun displayWinWindow(viewModel: GameViewModel) {
         if (viewModel.win.value == true) {
             val alertDialog = AlertDialog.Builder(this)
             alertDialog.setTitle("Congratulations!")
                 .setMessage("You won!")
+                .setPositiveButton("Start new game") { _: DialogInterface, i: Int -> finish() }
+                .show()
+        }
+    }
+
+    fun displayNoWinWindow(viewModel: GameViewModel) {
+        if (viewModel.impWin.value == true) {
+            val alertDialog = AlertDialog.Builder(this)
+            alertDialog.setTitle("Ups!")
+                .setMessage("The field is filled and nobody can win!")
                 .setPositiveButton("Start new game") { _: DialogInterface, i: Int -> finish() }
                 .show()
         }
@@ -61,7 +71,7 @@ class GameActivity: AppCompatActivity() {
             val button = Button(this)
             button.layoutParams = LinearLayout.LayoutParams(0, 250).apply {
                 weight = 1f
-                marginStart= 5
+                marginStart = 5
                 marginEnd = 5
                 topMargin = 5
                 bottomMargin = 5

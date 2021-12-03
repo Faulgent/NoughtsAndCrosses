@@ -1,10 +1,9 @@
 package com.margaritasoft.noughtsandcrosses
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class GameViewModel: ViewModel() {
+class GameViewModel : ViewModel() {
     private var scale: Scale? = null
 
     fun startNewGame(newScale: Scale) {
@@ -16,16 +15,16 @@ class GameViewModel: ViewModel() {
         scale = newScale
     }
 
-    val field =  MutableLiveData<Array<Array<Symbol>>>()
+    val field = MutableLiveData<Array<Array<Symbol>>>()
 
     private fun createNewField() {
-        field.postValue(Array(scale!!.size){Array(scale!!.size){Symbol.EMPTY}})
+        field.postValue(Array(scale!!.size) { Array(scale!!.size) { Symbol.EMPTY } })
     }
 
     var next = Symbol.CROSS
     var win = MutableLiveData(false)
 
-    fun pressed(x:Int, y:Int) {
+    fun pressed(x: Int, y: Int) {
         val oldValues = field.value!!
         val newValues = Array(scale!!.size) { row ->
             Array(scale!!.size) { column ->
@@ -34,8 +33,15 @@ class GameViewModel: ViewModel() {
         }
         win.value = newValues.checkForWin()
         changeNext()
+        impWin.value = newValues.none {
+            it.any {
+                it == Symbol.EMPTY
+            }
+        }
         field.postValue(newValues)
     }
+
+    var impWin = MutableLiveData<Boolean>(false)
 
     private fun Array<Array<Symbol>>.checkForWin(): Boolean {
         for (row in this) {
@@ -57,7 +63,7 @@ class GameViewModel: ViewModel() {
     }
 
     private fun changeNext() {
-        if(next == Symbol.CROSS){
+        if (next == Symbol.CROSS) {
             next = Symbol.NOUGHT
         } else {
             next = Symbol.CROSS
