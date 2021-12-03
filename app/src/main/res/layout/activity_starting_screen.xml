@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/beige_light"
     tools:context=".StartingScreen">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ChooseFieldSize"
+        android:textColor="@color/maroon"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,6 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/small_scale"
+        android:textColor="@color/maroon"
+        android:backgroundTint="@color/beige_dark"
         app:layout_constraintBottom_toBottomOf="@+id/medium"
         app:layout_constraintEnd_toStartOf="@+id/medium"
         app:layout_constraintHorizontal_bias="0.5"
@@ -34,6 +38,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/medium_scale"
+        android:textColor="@color/maroon"
+        android:backgroundTint="@color/beige_dark"
         app:layout_constraintBottom_toBottomOf="@+id/large"
         app:layout_constraintEnd_toStartOf="@+id/large"
         app:layout_constraintHorizontal_bias="0.5"
@@ -45,6 +51,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/large_scale"
+        android:textColor="@color/maroon"
+        android:backgroundTint="@color/beige_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

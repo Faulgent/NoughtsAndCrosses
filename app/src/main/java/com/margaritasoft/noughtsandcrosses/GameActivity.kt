@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.marginLeft
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
@@ -60,7 +61,14 @@ class GameActivity: AppCompatActivity() {
             val button = Button(this)
             button.layoutParams = LinearLayout.LayoutParams(0, 250).apply {
                 weight = 1f
+                marginStart= 5
+                marginEnd = 5
+                topMargin = 5
+                bottomMargin = 5
             }
+            button.setBackgroundResource(R.color.beige_dark)
+
+
 
             when (field[x][rowIndex]) {
                 Symbol.CROSS -> button.setBackgroundResource(R.drawable.ic_cross)
@@ -80,6 +88,7 @@ class GameActivity: AppCompatActivity() {
         val layout = LinearLayout(this)
         layout.orientation = LinearLayout.VERTICAL
         layout.gravity = Gravity.CENTER
+        layout.setBackgroundResource(R.color.beige_light)
         return layout
     }
 }
